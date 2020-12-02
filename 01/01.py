@@ -14,7 +14,7 @@ while i < len(lines):
     while j < len(lines):
         num2 = int(lines[j])
         if num1 + num2 == 2020:
-            print(num1, num2, num1*num2)
+            print("\n\nPair:", num1, num2, "\nProduct:", num1*num2)
         j += 1
     i += 1
 
@@ -29,7 +29,7 @@ while i < len(lines):
         while k < len(lines):
             num3 = int(lines[k])
             if num1 + num2 + num3 == 2020:
-                print(num1, num2, num3, num1*num2*num3)
+                print("\n\nTriplet:", num1, num2, num3, "\nProduct:", num1*num2*num3)
             k +=1
         j += 1
     i += 1
