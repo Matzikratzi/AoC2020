@@ -1,4 +1,5 @@
 Hi, this was an emacs solution! :)
+(but I also made a python solution)
 
 query-replace F to 0
 query-replace B to 1
