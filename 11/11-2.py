@@ -9,8 +9,10 @@ def SeekOccu(matrix, row, col):
     r = row
     c = col
     while r > 0 and c > 0:
-        if matrix[r-1][c-1] == '#':
-            neigOcc += 1
+        chkChr = matrix[r-1][c-1]
+        if chkChr != '.':
+            if chkChr == '#':
+                neigOcc += 1
             break
         r -= 1
         c -= 1
@@ -18,18 +20,22 @@ def SeekOccu(matrix, row, col):
     # above
     r = row
     c = col
-    while r > 1:
-        if matrix[r-1][c] == '#':
-            neigOcc += 1
+    while r > 0:
+        chkChr = matrix[r-1][c]
+        if chkChr != '.':
+            if chkChr == '#':
+                neigOcc += 1
             break
         r -= 1
 
     # upper right
     r = row
     c = col
-    while r > 0 and c < cmax - 1:
-        if matrix[r-1][c+1] == '#':
-            neigOcc += 1
+    while r > 0 and c < cmax:
+        chkChr = matrix[r-1][c+1]
+        if chkChr != '.':
+            if chkChr == '#':
+                neigOcc += 1
             break
         r -= 1
         c += 1
@@ -37,18 +43,22 @@ def SeekOccu(matrix, row, col):
     # right
     r = row
     c = col
-    while c < cmax - 1:
-        if matrix[r][c+1] == '#':
-            neigOcc += 1
+    while c < cmax:
+        chkChr = matrix[r][c+1]
+        if chkChr != '.':
+            if chkChr == '#':
+                neigOcc += 1
             break
         c += 1
 
     # lower right
     r = row
     c = col
-    while r < rmax - 1 and c < cmax - 1:
-        if matrix[r+1][c+1] == '#':
-            neigOcc += 1
+    while r < rmax and c < cmax:
+        chkChr = matrix[r+1][c+1]
+        if chkChr != '.':
+            if chkChr == '#':
+                neigOcc += 1
             break
         r += 1
         c += 1
@@ -56,18 +66,22 @@ def SeekOccu(matrix, row, col):
     # down
     r = row
     c = col
-    while r < rmax - 1:
-        if matrix[r+1][c] == '#':
-            neigOcc += 1
+    while r < rmax:
+        chkChr = matrix[r+1][c]
+        if chkChr != '.':
+            if chkChr == '#':
+                neigOcc += 1
             break
         r += 1
 
     # lower left
     r = row
     c = col
-    while r < rmax - 1 and c > 0:
-        if matrix[r+1][c-1] == '#':
-            neigOcc += 1
+    while r < rmax and c > 0:
+        chkChr = matrix[r+1][c-1]
+        if chkChr != '.':
+            if chkChr == '#':
+                neigOcc += 1
             break
         r += 1
         c -= 1
@@ -76,8 +90,10 @@ def SeekOccu(matrix, row, col):
     r = row
     c = col
     while c > 0:
-        if matrix[r][c-1] == '#':
-            neigOcc += 1
+        chkChr = matrix[r][c-1]
+        if chkChr != '.':
+            if chkChr == '#':
+                neigOcc += 1
             break
         c -= 1
     return neigOcc
@@ -150,10 +166,11 @@ def transMat2(matrix):
                 transRow[c] = '#'
                 changes += 1
             if matrix[r][c] == '#':
-                occupied += 1
                 if neighOccu >= 5:
                     transRow[c] = 'L'
                     changes += 1
+                else:
+                    occupied += 1
             c += 1
         r += 1
         transMat.append(transRow)
@@ -173,17 +190,14 @@ for row in data:
 changes = 1
 while changes != 0:
     matrix, changes, occupied = transMat(matrix)
-
-print('Matrix:')
-for row in matrix:
-    print(row)
-print('\n\nOccupied seats:', occupied)
+print('Part 1')
+print('Occupied seats:', occupied)
 
 
 ###### Part 2
-
+print('\nPart2')
 #with open('input') as f:
-with open('input-small') as f:
+with open('input') as f:
     data = [line.rstrip() for line in f]
 
 matrix = []
@@ -192,10 +206,10 @@ for row in data:
     matrix.append(list(row))
 
 changes = 1
-#while changes != 0:
-matrix, changes, occupied = transMat2(matrix)
-matrix, changes, occupied = transMat2(matrix)
-print('Matrix:')
-for row in matrix:
-    print(row)
-print('\n\nOccupied seats:', occupied)
+iters = 0
+while changes != 0:
+    matrix, changes, occupied = transMat2(matrix)
+    iters += 1
+    
+print('Occupied seats:', occupied)
+print('(after', iters, 'iterations)')

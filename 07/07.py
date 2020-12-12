@@ -49,6 +49,7 @@ while len(lines) > 0:
                     bagsInsideGold = bagVal_bags_and_gold[0]
                     
                 knownBags[container] = bagVal_bags_and_gold
+                print(container, bagVal_bags_and_gold[0])
                 del lines[i]
             else:
                 i += 1
