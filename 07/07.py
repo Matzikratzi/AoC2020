@@ -15,7 +15,8 @@ with open('input') as f:
 bagsWithGold = 0
 bagsInsideGold = 0
 knownBags = {}
-
+recordBag = ''
+record = 0
 while len(lines) > 0:
     i = 0
     while i < len(lines):
@@ -50,9 +51,13 @@ while len(lines) > 0:
                     
                 knownBags[container] = bagVal_bags_and_gold
                 print(container, bagVal_bags_and_gold[0])
+                if record < bagVal_bags_and_gold[0]:
+                    record = bagVal_bags_and_gold[0]
+                    recordBag = container
                 del lines[i]
             else:
                 i += 1
 
 print("Bags with gold inside", bagsWithGold)
 print("Bags inside gold", bagsInsideGold)
+print('Record bag:', recordBag, record)
