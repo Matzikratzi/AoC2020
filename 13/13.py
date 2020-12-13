@@ -10,19 +10,19 @@ IDs = data[1].split(',')
 
 workingIDs = [int(x) for x in IDs if x != 'x']
 
-print(workingIDs)
+#print(workingIDs)
 
-print(earliest)
+#print(earliest)
 
 
 winnerDeparture = 100000000000000000000000000000
 winnerID        = -1
 
-print(max(workingIDs))
+#print(max(workingIDs))
 for id in workingIDs:
     earlierDepart = math.floor(earliest/id) * id
     earliestDepart = earlierDepart + id
-    print(id, earlierDepart, earliestDepart)
+#    print(id, earlierDepart, earliestDepart)
     if earliestDepart < winnerDeparture:
         winnerDeparture = earliestDepart
         winnerID = id
