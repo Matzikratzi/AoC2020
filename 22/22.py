@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 import re
 
+# Function that reads the input file and initiates the cards for the
+# players
 def Dealer():
     with open('input') as f:
     #with open('input-small') as f:
@@ -19,8 +21,8 @@ def Dealer():
             currentHand.append(int(row))
     return hP1, hP2
 
-
-def round(hP1, hP2):
+# Function that decides the winnig card each part 1 round
+def Round(hP1, hP2):
     gameOver = False
     if hP1 !=[] and hP2 != []:
         cP1 = hP1.pop(0)
@@ -34,29 +36,31 @@ def round(hP1, hP2):
         
     return gameOver, hP1, hP2
 
-cardsP1, cardsP2 = Dealer()
-print('P1: ', cardsP1)
-print('P2: ', cardsP2)
+def Part1():
+    cardsP1, cardsP2 = Dealer()
+    print('P1: ', cardsP1)
+    print('P2: ', cardsP2)
 
-gameOver = False
+    gameOver = False
 
-while(gameOver == False):
-    gameOver, cardsP1, cardsP2 = round(cardsP1, cardsP2)
+    while(gameOver == False):
+        gameOver, cardsP1, cardsP2 = Round(cardsP1, cardsP2)
     
-print('P1: ', cardsP1)
-print('P2: ', cardsP2)
+    # print('P1: ', cardsP1)
+    # print('P2: ', cardsP2)
 
-if cardsP1 == []:
-    winningHand = cardsP2
-else:
-    winningHand = cardsP1
-    
-points = 0
-i = 0
-iMax = len(winningHand)
-while i < iMax:
-    print(winningHand[i], iMax-i)
-    points += winningHand[i]*(iMax-i)
-    i += 1
+    if cardsP1 == []:
+        winningHand = cardsP2
+    else:
+        winningHand = cardsP1
+        
+    points = 0
+    i = 0
+    iMax = len(winningHand)
+    while i < iMax:
+        points += winningHand[i]*(iMax-i)
+        i += 1
 
-print('Winning Score:', points)
+    print('Part 1 Winning Score:', points)
+
+Part1()
